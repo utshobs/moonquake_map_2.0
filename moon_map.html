@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<title>Moonquake Map 2.0 - for the Mass</title>
+	<link rel="icon" type="image/x-icon" href="assets/favicons/favicon.ico">
+
+	<style>
+		body {
+			overflow: hidden;
+			margin: 0;
+		}
+	</style>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.157.0/three.min.js"></script>
+	<script src="//unpkg.com/d3"></script>
+	<script src="//unpkg.com/d3-array"></script>
+	<script src="//unpkg.com/d3-scale"></script>
+
+	<script src="//unpkg.com/globe.gl"></script>
+
+	<link rel="stylesheet" href="./assets/style.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$("#globeViz2").hide();
+			$("#globeViz3").hide();
+			$("#globeViz4").hide();
+			$("#globeViz5").hide();
+			$("#hide").css("background-color", "#78CBFF");
+
+			$("#hide").click(function () {
+				$("#globeViz").show();
+				$("#globeViz2").hide();
+				$("#hide").css("background-color", "#78CBFF");
+				$("#show").css("background-color", "transparent");
+			});
+			$("#show").click(function () {
+				$("#globeViz").hide();
+				$("#globeViz2").show();
+				$("#hide").css("background-color", "transparent");
+				$("#show").css("background-color", "#78CBFF");
+			});
+		});
+	</script>
+
+</head>
+
+<body>
+
+	<!-- left Menu  -->
+	<div class="sidebar w3-sidebar w3-bar-block w3-card">
+		<a class="active" href="index.html"><i class="fa fa-home"></i> Home</a>
+		<a href="#"><i class="fa fa-bullhorn"></i> Notification</a>
+		<a href="#"><i class="fa fa-question"></i> How to Use?</a>
+		<a id="referenceView"><i class="fa fa-folder"></i> Reference(Nasa)</a>
+		<a href="https://moon.nasa.gov/resources/13/apollo-11-seismic-experiment/"><i class="fa fa-info-circle"></i>
+			About</a>
+
+		<div class="firstView">
+			<svg class="telescope_icon" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24">
+				<rect fill="none" width="24" height="24"></rect>
+				<path fill="#78cbff"
+					d="M10.96,9.34c1.09-0.58,2.45-0.17,3.03,0.9c0.59,1.08,0.18,2.42-0.91,3l0,0v0.02h-0.03c-0.08,0.04-0.16,0.08-0.24,0.11l0,0v0.03l0.11,0.19h0.04v0.04l0.11,0.16l0.03,0.05l2.58,3.63l0.22,0.3l0.56,0.8l0.22,0.3l3.01,4.31c0.11,0.2,0.07,0.46-0.1,0.62c-0.21,0.19-0.53,0.17-0.72-0.04l0,0l-2.98-4.21l-0.18-0.25l-0.19-0.27h-3.01v4.44c0,0.03,0,0.06,0,0.09c-0.03,0.28-0.27,0.48-0.55,0.45c-0.28-0.03-0.49-0.27-0.46-0.55v-4.45H8.49L8.3,19.28l-0.18,0.25l-2.98,4.21c-0.01,0.02-0.02,0.04-0.04,0.05c-0.18,0.22-0.49,0.25-0.71,0.08c-0.22-0.17-0.25-0.49-0.08-0.71l0,0l3.06-4.32l0.22-0.3l0.56-0.8l0.22-0.3l2.58-3.63l0.03-0.05l0.11-0.16v-0.03l0.15-0.21v-0.03c-0.08-0.03-0.16-0.07-0.24-0.11l0,0h-0.03c-0.39-0.21-0.7-0.52-0.91-0.9C9.47,11.26,9.87,9.92,10.96,9.34z M12.52,14.75v3.25h1.97l0.34,0l-0.19-0.27l-0.19-0.27l-1.37-1.93l-0.28-0.39L12.52,14.75z M11.51,14.75l-0.28,0.39l-0.28,0.39l-1.37,1.93l-0.19,0.27L9.2,18.01h2.31V14.75z M6.09,0l0.04,0.01L7.5,0.7c0.48,0.25,0.73,0.81,0.59,1.34l0,0l1.27,0.64c0.5,0.26,0.74,0.85,0.57,1.39l0,0l9.91,5.03c0.44,0.22,0.62,0.76,0.42,1.21l0,0l0.59,0.3c0.19,0.1,0.27,0.34,0.17,0.54l0,0L20,13.26c0,0,0,0,0,0c-0.1,0.2-0.33,0.28-0.53,0.18l0,0l-0.59-0.3c-0.23,0.43-0.75,0.6-1.18,0.4l0,0l-2.87-1.45c0.27-1.07-0.11-2.21-0.95-2.9c-1.19-0.97-2.93-0.77-3.88,0.44l0,0l-2.2-1.12C7.47,8.98,6.86,9.14,6.36,8.88l0,0L5.08,8.24C4.75,8.67,4.17,8.81,3.69,8.56l0,0L2.33,7.87c-0.07-0.04-0.1-0.13-0.07-0.2l0,0l3.68-7.59c0.04-0.07,0.12-0.1,0.2-0.07L6.09,0z M12.02,10.07l-0.13,0.01c-0.37,0.04-0.71,0.25-0.9,0.57c-0.35,0.57-0.17,1.32,0.41,1.67c0.1,0.06,0.2,0.1,0.31,0.13c0.21,0.06,0.43,0.06,0.64,0c0.11-0.03,0.21-0.07,0.31-0.13c0.37-0.22,0.59-0.61,0.59-1.04l0,0v-0.04c-0.02-0.66-0.57-1.17-1.23-1.17L12.02,10.07z">
+				</path>
+			</svg>
+			<button id="viewbtn">First Person's<br>View(3D/VR)</button>
+		</div>
+
+	</div>
+
+	<!-- Add zoom buttons -->
+
+	<button id="zoomInButton" class="zoomBtn1 w3-ripple"><i class="fa fa-plus"></i></button>
+	<button id="zoomOutButton" class="zoomBtn2 w3-ripple"><i class="fa fa-minus"></i></button>
+
+
+	<!-- Right Sidebar -->
+	<div class="w3-sidebar w3-bar-block w3-card"
+		style="width:20%;right:0;margin:20px;height:79%;border-radius:5px; overflow: hidden;">
+		<h5 class="w3-bar-item" style="cursor: default;">Moonquake Map 2.0</h5>
+
+		<!-- View Button -->
+		<div class="btn-group">
+			<button class="button1" id="hide">Moonquake Map</button>
+			<button class="button2" id="show">Apollo Landers</button>
+		</div>
+
+		<!-- Search bar -->
+		<form class="search">
+			<input type="text" id="searchInput" placeholder="Search - Lattitude & Longitude...">
+			<button type="button" id="searchButton"><i class="fa fa-search"></i></button>
+		</form>
+
+		<!-- Date Picker -->
+		<div class="row-container">
+			<select id="year" onchange="filterData()">
+				<option value="">Year</option>
+			</select>
+
+			<select id="month" onchange="filterData()">
+				<option value="">Month</option>
+			</select>
+
+			<select id="day" onchange="filterData()">
+				<option value="">Day</option>
+			</select>
+
+			<button id="datePickBtn">View All</button>
+		</div>
+
+		<!-- Magnitude Bar -->
+		<div class="row-container">
+			<span class="text">Magnitude Bar:</span>
+			<label class="toggle-button">
+				<input type="checkbox" class="toggle-1">
+				<span class="slider"></span>
+			</label>
+		</div>
+
+		<!-- Magnitude Bar -->
+		<div class="row-container">
+			<span class="text">Risky Zones:</span>
+			<label class="toggle-button">
+				<input type="checkbox" class="toggle-5">
+				<span class="slider"></span>
+			</label>
+		</div>
+
+		<!-- Lattitude & Logitude Line -->
+		<div class="row-container">
+			<span class="text">Lattitude & Longitude:</span>
+			<label class="toggle-button">
+				<input type="checkbox" class="toggle-2">
+				<span class="slider"></span>
+			</label>
+		</div>
+
+		<!-- Topographic Map view -->
+		<div class="row-container">
+			<span class="text">Topographic Map</span>
+			<label class="toggle-button">
+				<input type="checkbox" class="toggle-3">
+				<span class="slider"></span>
+			</label>
+		</div>
+
+		<!-- Seas & Oceans view -->
+		<div class="row-container">
+			<span class="text">Seas & Oceans</span>
+			<label class="toggle-button">
+				<input type="checkbox" class="toggle-4">
+				<span class="slider"></span>
+			</label>
+		</div>
+
+
+		<!-- Nakamura dropdown years -->
+		<div class="row-container">
+			<span class="sliderText">Nakamura</span>
+			<select class="form-select" id="year" name="year">
+				<option value="">1971,17 April</option>
+				<option value="01">1971, 20 May</option>
+				<option value="02">1971, 11 July</option>
+				<option value="03">1972, 2 January</option>
+				<option value="04">1972, 17 September</option>
+				<option value="05">1972, 06 December</option>
+				<option value="06">1972, 09 December</option>
+				<option value="07">1973, 08 February</option>
+				<option value="08">1973, 13 March</option>
+				<option value="09">1973, 20 June</option>
+				<option value="10">1973, 01 October</option>
+				<option value="11">1974, 23 February</option>
+				<option value="12">1974, 27 March</option>
+			</select>
+		</div>
+
+
+		<!-- Rotation speed slider with Auto control -->
+		<div class="row-container">
+			<span class="sliderText">Rotation:</span>
+			<input type="range" id="rotationSpeedSlider" min="0.01" max="1.0" step="0.01" value="0.1" />
+			<button id="autoRotationToggle">Auto</button>
+		</div>
+
+		<!-- Light intensity-->
+		<div class="row-container">
+			<label for="light-intensity-slider" class="sliderText">Light:</label>
+			<input type="range" id="light-intensity-slider" min="0" max="2" step="0.1" value="1">
+		</div>
+
+		<!-- AI Assistant -->
+		<!-- <div class="row-container">
+			<span class="sliderText">AI Assistant</span>
+		</div> -->
+
+	</div>
+
+
+	<!-- Learning Section -->
+
+	<div id="startLearn" class="w3-sidebar w3-bar-block w3-card row-container2"
+		style="width:13%;right:0;margin:20px;margin-top:630px;height:8%;">
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24pt" height="24pt"
+			viewBox="0 0 48 48" version="1.1">
+			<g id="surface1">
+				<path style=" stroke:none;fill-rule:nonzero;fill:#78cbff ;fill-opacity:1;"
+					d="M 32 8 C 28.6875 8 26 10.6875 26 14 L 26 34 C 26 35.101563 25.101563 36 24 36 C 22.898438 36 22 35.101563 22 34 L 22 14 C 22 10.6875 19.3125 8 16 8 L 6 8 C 4.898438 8 4 8.898438 4 10 L 4 38 C 4 39.101563 4.898438 40 6 40 L 20.554688 40 C 21.242188 41.1875 22.523438 42 24 42 C 25.476563 42 26.757813 41.1875 27.445313 40 L 42 40 C 43.101563 40 44 39.101563 44 38 L 44 10 C 44 8.898438 43.101563 8 42 8 Z " />
+			</g>
+		</svg>
+		<span class="text">Start Learning →</span>
+	</div>
+
+	<!-- First person View -->
+	<div id="myModal" class="modal">
+
+		<!-- First person View using Three.js -->
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<iframe src='./moonquake_simulation/simulation_threeJs.html' width='100%' height='500px'
+				frameborder='0'></iframe><br>
+			<!-- <iframe src='./moonquake_simulation/simulation.html' width='100%' height='550px' frameborder='0'></iframe> -->
+			<a href="#" target="_blank" class="experienceInVR">
+				<?xml version="1.0" encoding="UTF-8"?>
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20pt"
+					height="20pt" viewBox="0 0 48 48" version="1.1">
+					<g id="surface1">
+						<path style=" stroke:none;fill-rule:nonzero;fill:#78cbff ;fill-opacity:1;"
+							d="M 11.15625 6 C 9.726563 6 8.398438 6.773438 7.6875 8.015625 L 3.265625 15.757813 C 2.484375 16.648438 2 17.789063 2 19.0625 L 2 36.9375 C 2 39.734375 4.28125 42 7.078125 42 L 15.796875 42 C 17.734375 42 19.484375 40.84375 20.25 39.054688 L 22.226563 35.117188 C 22.515625 34.4375 23.179688 34 23.914063 34 C 24.648438 34 25.3125 34.4375 25.601563 35.117188 L 27.75 39.054688 C 28.515625 40.84375 30.265625 42 32.210938 42 L 40.929688 42 C 43.726563 42 46 39.726563 46 36.9375 L 46 19.0625 C 46 18.179688 45.757813 17.367188 45.359375 16.648438 L 45.382813 16.632813 L 40.304688 7.96875 C 39.585938 6.757813 38.273438 6 36.851563 6 Z M 11.15625 10 L 36.851563 10 L 39.203125 14 L 8.875 14 Z M 14 24 C 16.210938 24 18 25.789063 18 28 C 18 30.210938 16.210938 32 14 32 C 11.789063 32 10 30.210938 10 28 C 10 25.789063 11.789063 24 14 24 Z M 34 24 C 36.210938 24 38 25.789063 38 28 C 38 30.210938 36.210938 32 34 32 C 31.789063 32 30 30.210938 30 28 C 30 25.789063 31.789063 24 34 24 Z " />
+					</g>
+				</svg>&nbsp;Experience In VR</a>
+		</div>
+	</div>
+
+
+	<!-- Start learning Section -->
+	<div id="myModal2" class="modal">
+
+		<!--  learning content -->
+		<div class="modal-content">
+			<span id="close2" class="close">&times;</span>
+			<!-- <div><a href="./moonquake_simulation/moonquake-simulator.html" target="_blank">Watch Moonquake from Camera's
+					Point of View!</a></div> -->
+			<iframe src='./learning.html' width='100%' height='500px' frameborder='0'></iframe>
+		</div>
+	</div>
+
+	<!--Reference Section -->
+	<div id="myModal3" class="modal">
+
+		<!--  learning content -->
+		<div class="modal-content">
+			<span id="close3" class="close">&times;</span>
+			<!-- <div><a href="./moonquake_simulation/moonquake-simulator.html" target="_blank">Watch Moonquake from Camera's
+					Point of View!</a></div> -->
+			<iframe src='./reference.html' width='100%' height='500px' frameborder='0'></iframe>
+		</div>
+	</div>
+
+
+	<!-- Moon Globe - Moonquake -->
+
+	<div id="globeViz"></div>
+
+	<!-- Apollo landers -->
+
+	<div id="globeViz2"></div>
+
+	<!-- Topography Map -->
+
+	<div id="globeViz3"></div>
+
+	<!-- Magnitude Bar -->
+	<div id="globeViz4"></div>
+
+	<!-- Magnitude Bar -->
+	<div id="globeViz5"></div>
+
+
+	<!-- Right Side Info View -->
+
+	<div id="moonquake_info">
+		<label for="moonQuake_info">Information :</label>
+		<div style="display: flex; align-items: center;">
+			<div style="width: 10px; height: 10px; background-color: skyblue; margin-right: 5px;"></div>
+			<p style="margin: 0;">Deep moonquakes</p>
+		</div>
+		<div style="display: flex; align-items: center;">
+			<div style="width: 10px; height: 10px; background-color: red; margin-right: 5px;"></div>
+			<p style="margin: 0;">Shallow moonquakes</p>
+		</div>
+		<p>Hover/Click on any moonquake to know more about it.</p>
+	</div>
+
+
+
+
+	<script>
+		const colorScale = d3.scaleOrdinal(['skyblue', 'red', 'yellow', 'green', 'black']);
+
+		const labelsTopOrientation = new Set(['Apollo 12', 'Luna 2', 'Luna 20', 'Luna 21', 'Luna 24',
+			'LCROSS Probe'
+		]); // avoid label collisions
+
+
+		let jsonData;
+
+		const yearSelect = document.getElementById('year');
+		const monthSelect = document.getElementById('month');
+		const daySelect = document.getElementById('day');
+		const dataTable = document.getElementById('data-table');
+
+		// Function to fetch JSON data
+		async function fetchData() {
+			try {
+				const response = await fetch('./data/data_all.json');
+				jsonData = await response.json();
+				initializeFilters();
+			} catch (error) {
+				console.error('Error loading JSON data:', error);
+			}
+		}
+
+		// Function to initialize year and day filters
+		function initializeFilters() {
+			const years = [...new Set(jsonData.map(item => {
+				return item.date ? item.date.substring(0, 4) : ''; // Check for null or empty date
+			}))].filter(Boolean).sort(); // Filter out empty strings
+
+			const months = [...new Set(jsonData.map(item => {
+				return item.date ? item.date.substring(5, 7) : ''; // Check for null or empty date
+			}))].filter(Boolean).sort(); // Filter out empty strings
+
+			const days = [...new Set(jsonData.map(item => {
+				return item.date ? item.date.substring(8, 10) : ''; // Check for null or empty date
+			}))].filter(Boolean).sort(); // Filter out empty strings
+
+			// Populate year and day select options
+			years.forEach(year => {
+				const option = document.createElement('option');
+				option.value = year;
+				option.textContent = year;
+				yearSelect.appendChild(option);
+			});
+
+			months.forEach(month => {
+				const option = document.createElement('option');
+				option.value = month;
+				option.textContent = month;
+				monthSelect.appendChild(option);
+			});
+
+			days.forEach(day => {
+				const option = document.createElement('option');
+				option.value = day;
+				option.textContent = day;
+				daySelect.appendChild(option);
+			});
+
+			// Initialize the table with all data
+			filterData();
+		}
+
+		// Function to filter data based on year and day
+		function filterData() {
+			const selectedYear = yearSelect.value;
+			const selectedMonth = monthSelect.value;
+			const selectedDay = daySelect.value;
+
+			const filteredData = jsonData.filter(item => {
+				if (!item.date) return false; // Check for null or empty date
+				const itemYear = item.date.substring(0, 4);
+				const itemMonth = item.date.substring(5, 7);
+				const itemDay = item.date.substring(8, 10);
+
+				return (!selectedYear || itemYear === selectedYear) && (!selectedMonth || itemMonth === selectedMonth) &&
+					(!selectedDay || itemDay === selectedDay);
+			});
+
+			const gData = filteredData.map(item => ({
+				lat: parseFloat(item.lat),
+				lng: parseFloat(item.lng),
+				size: Math.random() * 1,
+				//color: ['red', 'white', 'blue', 'green'][Math.floor(Math.random() * 4)],
+				maxR: 0.01 * 20 + 3,
+				//maxR: Math.random() * 20 + 3,
+				propagationSpeed: 0.01 * 0.1 + 1,
+				repeatPeriod: 0.2 * 1000 + 300
+			}));
+
+			//console.log(gData);
+
+			const labelsData = gData.map(item => item.lat);
+			
+			moon.labelsData(filteredData);
+			moon.ringsData(gData);
+			moon.ringColor(() => colorInterpolator);
+			moon.ringMaxRadius('maxR');
+			moon.ringPropagationSpeed('propagationSpeed');
+			moon.ringRepeatPeriod('repeatPeriod');
+
+		}
+
+		// Fetch data when the page loads
+		fetchData();
+
+		// Add an event listener to the search button
+		document.getElementById('searchButton').addEventListener('click', function () {
+			const searchInput = document.getElementById('searchInput').value.toLowerCase();
+
+
+			fetch('./data/data_all.json')
+				.then(response => response.json())
+				.then(data => {
+					// Filter the data based on the search input
+					const filteredData = data.filter(item => {
+						if (!item.id || !item.date || !item.type) return false;
+
+						const idMatch = item.id.toLowerCase().includes(searchInput);
+						const dateMatch = item.date.includes(searchInput);
+						const typeMatch = item.type.toLowerCase().includes(searchInput);
+
+						return idMatch || dateMatch || typeMatch;
+					});
+
+					if (filteredData.length === 0) {
+						// Display an alert when no data is found
+						alert('No data found for the search criteria.');
+					} else {
+						// Update the globe visualization with the filtered data
+						updateGlobeWithData(filteredData);
+					}
+				})
+				.catch(error => {
+					console.error('Error loading JSON data:', error);
+				});
+		});
+
+		// Function to update the globe visualization with filtered data
+		function updateGlobeWithData(filteredData) {
+
+			//console.log('Filtered Data:', filteredData);
+
+			const gData = filteredData.map(item => ({
+				lat: parseFloat(item.lat),
+				lng: parseFloat(item.lng),
+				size: Math.random() * 1,
+				color: ['red', 'white', 'blue', 'green'][Math.floor(Math.random() * 4)],
+				maxR: 0.01 * 20 + 3,
+				propagationSpeed: 0.01 * 0.1 + 1,
+				repeatPeriod: 0.2 * 1000 + 300
+			}));
+
+
+			moon.labelsData(filteredData);
+			moon.ringsData(gData);
+			moon.ringColor(() => colorInterpolator);
+			moon.ringMaxRadius('maxR');
+			moon.ringPropagationSpeed('propagationSpeed');
+			moon.ringRepeatPeriod('repeatPeriod');
+
+		}
+
+
+
+		// fetch('./data/data_all.json')
+		// 	.then(response => response.json())
+		// 	.then(data => {
+
+
+		// 		const gData = data.map(item => ({
+		// 			lat: parseFloat(item.lat),
+		// 			lng: parseFloat(item.lng),
+		// 			size: Math.random() * 1,
+		// 			color: ['red', 'white', 'blue', 'green'][Math.floor(Math.random() * 4)],
+		// 			maxR: 0.01 * 20 + 3,
+		// 			//maxR: Math.random() * 20 + 3,
+		// 			propagationSpeed: 0.01 * 0.1 + 1,
+		// 			repeatPeriod: 0.2 * 1000 + 300
+		// 		}));
+
+
+		// 		moon.labelsData(data);
+		// 		moon.ringsData(gData);
+		// 		moon.ringColor(() => colorInterpolator);
+		// 		moon.ringMaxRadius('maxR');
+		// 		moon.ringPropagationSpeed('propagationSpeed');
+		// 		moon.ringRepeatPeriod('repeatPeriod');
+
+
+		// 	})
+
+		const colorInterpolator = t => `rgba(120,203,255,${1-t})`;
+
+		const elem = document.getElementById('globeViz');
+		const moon = Globe()
+			.globeImageUrl('assets/moon_texture.jpg')
+			.bumpImageUrl('assets/moon_displacement_texture.jpg')
+			.backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
+			.showGraticules(false)
+			.showAtmosphere(false) // moon has no atmosphere
+			.labelText('id')
+			.labelSize(1.7)
+			.labelDotRadius(0.8)
+			.labelDotOrientation(d => labelsTopOrientation.has(d.label) ? 'top' : 'bottom')
+			.labelColor(d => colorScale(d.depth > 700 ? 1 : 2))
+			.labelLabel(d => `
+	              <div><b>Lattitude & Longitude: ${d.id}</b></div>
+	              <div>Magnitude: ${d.magnitude} - Depth: ${d.depth} Km</div>
+	                        `)
+			.onLabelClick(d => window.open("https://public.tableau.com/app/profile/abdul.muhaimin.adeeb/viz/Book3_16965103338840/Dashboard1?publish=yes", '_blank'))
+			(elem);
+
+
+		// Manually add light to the scene
+		const scene = moon.scene();
+		const light = new THREE.DirectionalLight(0xffffff, 0);
+		light.position.set(1, 1, 1).normalize();
+		scene.add(light);
+
+		// // Slider control for light intensity
+		const lightIntensitySlider = document.getElementById('light-intensity-slider');
+		lightIntensitySlider.addEventListener('input', (event) => {
+			const intensity = parseFloat(event.target.value);
+			light.intensity = intensity;
+		});
+
+		// Data
+		// Fetch latitude and longitude data from the API
+		// fetch('https://api.npoint.io/79a53e877331a804b892').then(r => r.json()).then(data => {
+		// 	moon.labelsData(data);
+		// });
+
+		// // Fetch data from Local file
+
+		// fetch('./data_all.json').then(r => r.json()).then(landingSites => {
+		// 	moon.labelsData(landingSites);
+		// });
+	</script>
+
+	<script type="module" src="assets/dataLoad.js"></script>
+	<script type="module" src="assets/apollo_landers.js"></script>
+	<script type="module" src="assets/magnitude_bar.js"></script>
+	<script type="module" src="assets/risky_zones.js"></script>
+	<script src="assets/right_sidebar.js"></script>
+	<script type="module" src="assets/topgraphy.js"></script>
+	<script src="assets/learn.js"></script>
+
+
+</body>
+
+</html>

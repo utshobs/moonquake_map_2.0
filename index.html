@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moonquake Map 2.0 For the Mass</title>
+
+    <link rel="stylesheet" media="screen" href="assets/main.css">
+
+
+    <link rel="apple-touch-icon" type="image/png" href="assets/favicons/moon.png">
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/favicons/moon.png">
+
+    <link rel="mask-icon" type="image/x-icon" href="assets/favicons/moon.png" color="#111">
+    <link rel="stylesheet" href="assets/style.css">
+
+    <style>
+        body {
+            background-image: url('assets/BG.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- <div>
+       <span class="constant-tilt-shake">Moonquake &nbsp;&nbsp;&nbsp;&nbsp; 2.0</span><span class="map"><span class="">M</span><span class="">a</span><span class="">p</span></span><span class="text2">for the Mass</span>
+    </div>  -->    
+
+    <div class="word constant-tilt-shake">
+        <span class="m">M</span>
+        <span class="">O</span>
+        <span class="">O</span>
+        <span class="">N</span>
+        <span class="q">Q</span>
+        <span class="">U</span>
+        <span class="">A</span>
+        <span class="">K</span>
+        <span class="">E</span>
+        <span class=""></span>
+        <span class="m2">M</span>
+        <span class="">A</span>
+        <span class="">P</span>
+        <span class=""></span>
+        <span class="">2</span>
+        <span class="">.</span>
+        <span class="zero">0</span>
+        <div>
+            <p class="text1">- for the Mass</p>
+        </div>
+    </div>
+    
+
+    <div class="box"></div>
+    <button id="btn" onclick="myVar = setTimeout(myFunction, 1500)">Explore</button>
+
+    <script>
+        document.getElementById('btn').addEventListener('click', function () {
+            document.querySelector('.constant-tilt-shake').classList.add('animationshake');
+            document.querySelector('.zero').classList.add('active');
+            document.querySelector('.m').classList.add('active');
+            document.querySelector('.q').classList.add('active');
+            document.querySelector('.m2').classList.add('active');
+        });
+
+        function myFunction() {
+            window.location.href = 'moon_map.html';
+        }
+
+
+        const spans = document.querySelectorAll('.word span');
+
+        spans.forEach((span, idx) => {
+            span.addEventListener('click', e => {
+                e.target.classList.add('active');
+            });
+            span.addEventListener('animationend', e => {
+                e.target.classList.remove('active');
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>

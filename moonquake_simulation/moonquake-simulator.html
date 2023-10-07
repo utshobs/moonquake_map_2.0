@@ -1,0 +1,395 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="theme-color" content="#eeeeee" />
+    <meta content="https://img.itch.zone/aW1nLzEwMTY0Nzg4LmpwZw==/original/dJmznP.jpg" property="og:image" />
+    <link rel="icon" href="../assets/favicons/favicon.ico" />
+    <meta content="itch.io" property="og:site_name" />
+    <meta content="4503599627724030" property="twitter:account_id" />
+    <meta content="Simulating a moonquake near Apollo 16 site" property="og:description" />
+    <meta name="description" content="Simulating a moonquake near Apollo 16 site" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="itch:path" content="games/1726051" />
+    <link type="application/rss+xml" title="Moonquake Simulator Devlog" href="https://cucumburr.itch.io/moonquake-simulator/devlog.rss" rel="alternate" />
+    <meta name="twitter:site" content="@itchio" />
+    <meta name="twitter:title" content="Moonquake Simulator by Cucumburr" />
+    <meta name="twitter:description" content="Simulating a moonquake near Apollo 16 site. Play in your browser" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta content="https://img.itch.zone/aW1nLzEwMTY0Nzg4LmpwZw==/508x254%23mb/kzeKep.jpg" property="twitter:image" />
+    <meta name="twitter:url" content="https://cucumburr.itch.io/moonquake-simulator" />
+    <script type="application/ld+json">
+      {
+        "@type": "BreadcrumbList",
+        "@context": "http:\/\/schema.org",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "item": {
+            "@id": "https:\/\/itch.io\/games",
+            "name": "Games"
+          },
+          "position": 1
+        }, {
+          "@type": "ListItem",
+          "item": {
+            "@id": "https:\/\/itch.io\/games\/genre-simulation",
+            "name": "Simulation"
+          },
+          "position": 2
+        }, {
+          "@type": "ListItem",
+          "item": {
+            "@id": "https:\/\/itch.io\/games\/free",
+            "name": "Free"
+          },
+          "position": 3
+        }]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "name": "Moonquake Simulator",
+        "description": "Simulating a moonquake near Apollo 16 site",
+        "@context": "http:\/\/schema.org\/",
+        "@type": "Product"
+      }
+    </script>
+    <title>Moonquake Simulator by Cucumburr</title>
+    <meta name="csrf_token" value="WyJ2VUFiIiwxNjk1OTk0NDYzLCJsaVdadUZGeEMzZjc4RzkiXQ==.pOw67/8tyRQkLb1t5xF+6hoh0E4=" />
+    <link rel="stylesheet" href="https://static.itch.io/game.css?1695935253" />
+    <script type="text/javascript">
+      window.itchio_translations_url = 'https://static.itch.io/translations';
+    </script>
+    <script type="text/javascript" src="https://static.itch.io/lib.min.js?1695935253"></script>
+    <script type="text/javascript" src="https://static.itch.io/bundle.min.js?1695935253"></script>
+    <script type="text/javascript" src="https://static.itch.io/lib/jquery.maskMoney.js"></script>
+    <script id="lib_react_src" data-src="https://static.itch.io/react.min.js?1695935253"></script>
+    <script type="text/javascript" src="https://static.itch.io/game.min.js?1695935253"></script>
+    <script type="text/javascript">
+      I.current_user = null;
+      I.subdomain = true;
+    </script>
+    <script type="text/javascript">
+      if (!window.location.hostname.match(/localhost/)) {
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', "G-36R7NPBMLS", {});
+        (function(d, t, s, m) {
+          s = d.createElement(t);
+          s.src = "https:\/\/www.googletagmanager.com\/gtag\/js?id=G-36R7NPBMLS";
+          s.async = 1;
+          m = d.getElementsByTagName(t)[0];
+          m.parentNode.insertBefore(s, m);
+        })(document, "script");
+      }
+    </script>
+    <style type="text/css" id="game_theme">
+      :root {
+        --itchio_ui_bg: #585858;
+        --itchio_ui_bg_dark: #525252
+      }
+
+      .wrapper {
+        --itchio_font_family: Lato;
+        --itchio_bg_color: #eeeeee;
+        --itchio_bg2_color: rgba(255, 255, 255, 1);
+        --itchio_bg2_sub: #e5e5e5;
+        --itchio_text_color: #222222;
+        --itchio_link_color: #78cbff ;
+        --itchio_border_color: #d8d8d8;
+        --itchio_button_color: #78cbff ;
+        --itchio_button_fg_color: #ffffff;
+        --itchio_button_shadow_color: #78cbff ;
+        background-color: #eeeeee;
+        /*! */
+        /* */
+      }
+
+      .inner_column {
+        color: #222222;
+        font-family: Lato, Lato, LatoExtended, sans-serif;
+        background-color: rgba(255, 255, 255, 1)
+      }
+
+      .inner_column ::selection {
+        color: #ffffff;
+        background: #78cbff 
+      }
+
+      .inner_column ::-moz-selection {
+        color: #ffffff;
+        background: #78cbff 
+      }
+
+      .inner_column h1,
+      .inner_column h2,
+      .inner_column h3,
+      .inner_column h4,
+      .inner_column h5,
+      .inner_column h6 {
+        font-family: inherit;
+        font-weight: 900;
+        color: inherit
+      }
+
+      .inner_column a,
+      .inner_column .footer a {
+        color: #78cbff 
+      }
+
+      .inner_column .button,
+      .inner_column .button:hover,
+      .inner_column .button:active {
+        background-color: #78cbff ;
+        color: #ffffff;
+        text-shadow: 0 1px 0px #78cbff 
+      }
+
+      .inner_column hr {
+        background-color: #d8d8d8
+      }
+
+      .inner_column table {
+        border-color: #d8d8d8
+      }
+
+      .inner_column .redactor-box .redactor-toolbar li a {
+        color: #78cbff 
+      }
+
+      .inner_column .redactor-box .redactor-toolbar li a:hover,
+      .inner_column .redactor-box .redactor-toolbar li a:active,
+      .inner_column .redactor-box .redactor-toolbar li a.redactor-act {
+        background-color: #78cbff  !important;
+        color: #ffffff !important;
+        text-shadow: 0 1px 0px #78cbff  !important
+      }
+
+      .inner_column .redactor-box .redactor-toolbar .re-button-tooltip {
+        text-shadow: none
+      }
+
+      .game_frame {
+        background: #e5e5e5;
+        /*! */
+        /* */
+      }
+
+      .game_frame .embed_info {
+        background-color: rgba(255, 255, 255, 0.85)
+      }
+
+      .game_loading .loader_bar .loader_bar_slider {
+        background-color: #78cbff 
+      }
+
+      .view_game_page .reward_row,
+      .view_game_page .bundle_row {
+        border-color: #e5e5e5 !important
+      }
+
+      .view_game_page .game_info_panel_widget {
+        background: rgba(229, 229, 229, 1)
+      }
+
+      .view_game_page .star_value .star_fill {
+        color: #78cbff 
+      }
+
+      .view_game_page .rewards .quantity_input {
+        background: rgba(255, 255, 255, 1);
+        border-color: rgba(34, 34, 34, 0.5);
+        color: #222222
+      }
+
+      .view_game_page .right_col {
+        display: none
+      }
+
+      .game_devlog_page li .meta_row .post_likes {
+        border-color: #e5e5e5
+      }
+
+      .game_devlog_post_page .post_like_button {
+        box-shadow: inset 0 0 0 1px #d8d8d8
+      }
+
+      .game_comments_widget .community_post .post_footer a,
+      .game_comments_widget .community_post .post_footer .vote_btn,
+      .game_comments_widget .community_post .post_header .post_date a,
+      .game_comments_widget .community_post .post_header .edit_message {
+        color: rgba(34, 34, 34, 0.5)
+      }
+
+      .game_comments_widget .community_post .reveal_full_post_btn {
+        background: linear-gradient(to bottom, transparent, #ffffff 50%, #ffffff);
+        color: #78cbff 
+      }
+
+      .game_comments_widget .community_post .post_votes {
+        border-color: rgba(34, 34, 34, 0.2)
+      }
+
+      .game_comments_widget .community_post .post_votes .vote_btn:hover {
+        background: rgba(34, 34, 34, 0.05)
+      }
+
+      .game_comments_widget .community_post .post_footer .vote_btn {
+        border-color: rgba(34, 34, 34, 0.5)
+      }
+
+      .game_comments_widget .community_post .post_footer .vote_btn span {
+        color: inherit
+      }
+
+      .game_comments_widget .community_post .post_footer .vote_btn:hover,
+      .game_comments_widget .community_post .post_footer .vote_btn.voted {
+        background-color: #78cbff ;
+        color: #ffffff;
+        text-shadow: 0 1px 0px #78cbff ;
+        border-color: #78cbff 
+      }
+
+      .game_comments_widget .form .redactor-box,
+      .game_comments_widget .form .click_input,
+      .game_comments_widget .form .forms_markdown_input_widget {
+        border-color: rgba(34, 34, 34, 0.5);
+        background: transparent
+      }
+
+      .game_comments_widget .form .redactor-layer,
+      .game_comments_widget .form .redactor-toolbar,
+      .game_comments_widget .form .click_input,
+      .game_comments_widget .form .forms_markdown_input_widget {
+        background: rgba(255, 255, 255, 1)
+      }
+
+      .game_comments_widget .form .forms_markdown_input_widget .markdown_toolbar button {
+        color: inherit;
+        opacity: 0.6
+      }
+
+      .game_comments_widget .form .forms_markdown_input_widget .markdown_toolbar button:hover,
+      .game_comments_widget .form .forms_markdown_input_widget .markdown_toolbar button:active {
+        opacity: 1;
+        background-color: #78cbff  !important;
+        color: #ffffff !important;
+        text-shadow: 0 1px 0px #78cbff  !important
+      }
+
+      .game_comments_widget .form .forms_markdown_input_widget .markdown_toolbar,
+      .game_comments_widget .form .forms_markdown_input_widget li {
+        border-color: rgba(34, 34, 34, 0.5)
+      }
+
+      .game_comments_widget .form textarea {
+        border-color: rgba(34, 34, 34, 0.5);
+        background: rgba(255, 255, 255, 1);
+        color: inherit
+      }
+
+      .game_comments_widget .form .redactor-toolbar {
+        border-color: rgba(34, 34, 34, 0.5)
+      }
+
+      .game_comments_widget .hint {
+        color: rgba(34, 34, 34, 0.5)
+      }
+
+      .game_community_preview_widget .community_topic_row .topic_tag {
+        background-color: #e5e5e5
+      }
+
+      .footer .svgicon,
+      .view_game_page .more_information_toggle .svgicon {
+        fill: #222222 !important
+      }
+    </style>
+  </head>
+  <body data-page_name="view_game" class="locale_en game_layout embedded_game no_theme_toggle responsive" data-host="itch.io">
+
+    <script type="text/javascript">
+      new I.GameUserTools('#user_tools')
+    </script>
+    <div id="wrapper" class="main wrapper">
+      <div id="inner_column" class="inner_column size_large family_lato">
+        <div id="header" class="header">
+          <h1 itemprop="name" class="game_title">Moonquake Simulator</h1>
+        </div>
+        <div id="view_html_game_6820359" class="view_html_game_page view_game_page page_widget base_widget ready">
+          <div id="html_embed_1476247" class="html_embed_widget base_widget embed_wrapper">
+            <div data-height="360" style="width: 920px; height: 460px" data-width="650" class="game_frame game_pending start_maximized">
+              <div class="restore_wrapper">
+                <button class="restore_btn button">
+                  <svg version="1.1" role="img" viewBox="0 0 24 24" aria-hidden fill="none" stroke-linecap="round" stroke-width="2" stroke-linejoin="round" stroke="currentColor" class="svgicon icon_play" width="24" height="24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                  </svg> Restore game </button>
+              </div>
+              <div data-iframe="&lt;iframe frameborder=&quot;0&quot; allowfullscreen=&quot;true&quot; scrolling=&quot;no&quot; src=&quot;https://v6p9d9t4.ssl.hwcdn.net/html/7038681/index.html&quot; allowtransparency=&quot;true&quot; webkitallowfullscreen=&quot;true&quot; mozallowfullscreen=&quot;true&quot; msallowfullscreen=&quot;true&quot; id=&quot;game_drop&quot; allow=&quot;autoplay; fullscreen *; geolocation; microphone; camera; midi; monetization; xr-spatial-tracking; gamepad; gyroscope; accelerometer; xr; cross-origin-isolated&quot;&gt;&lt;/iframe&gt;" class="iframe_placeholder">
+                <button class="button load_iframe_btn">
+                  <svg version="1.1" role="img" viewBox="0 0 24 24" aria-hidden fill="none" stroke-linecap="round" stroke-width="2" stroke-linejoin="round" stroke="currentColor" class="svgicon icon_play" width="24" height="24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                  </svg> Experience Moonquake </button>
+              </div>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="left_col column">
+              <div class="formatted_description user_formatted">
+                <p>Moonquake Simulation&nbsp;for NASA spaceapps challenge 2023</p>
+                <p>Moonquake Simulation from Camera's Point of view</p>
+                <p>>SPACE Button to toggle MENU</p>
+                <p>>ESCAPE Button to close Full Screen Mode</p>
+              </div>
+  
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <script type="text/javascript">
+      I.setup_layout()
+    </script>
+    <script type="text/template" id="loading_lightbox_tpl"> <div aria-live="polite" class="lightbox loading_lightbox">
+				<div class="loader_outer">
+					<div class="loader_label">Loading</div>
+					<div class="loader_bar">
+						<div class="loader_bar_slider"></div>
+					</div>
+				</div>
+			</div>
+		</script>
+    <script type="text/javascript">
+      new I.HtmlEmbed('#html_embed_1476247', {
+        "start_maximized": true,
+        "width": 640,
+        "height": 360
+      });
+      new I.CommunityViewTopic('#community_topic_posts_5489646', {
+        "report_url": "https:\/\/itch.io\/post\/:post_id\/report"
+      });
+      init_ViewHtmlGame('#view_html_game_6820359', {
+        "game": {
+          "type_name": "html",
+          "type": 5,
+          "actual_price": 0,
+          "id": 1726051,
+          "min_price": 0,
+          "hit_url": "https:\/\/cucumburr.itch.io\/moonquake-simulator\/rh\/eyJlIjoxNjk2MDA0Mjc2LCJpZCI6MTcyNjA1MSwiciI6Imh0dHBzOlwvXC9jdWN1bWJ1cnIuaXRjaC5pb1wvIn0%3d%2eiEKcCrnV48vfB6d2tBKra1m8shQ%3d",
+          "play_url": "https:\/\/cucumburr.itch.io\/moonquake-simulator\/rp\/eyJlIjoxNjk2MDA0NDExLCJtIjoxNjk2MDA0MzUxLCJpZCI6MTcyNjA1MSwicm4iOjgwMjk5fQ%3d%3d%2emsYEmfsygdutFbMhT1iR%2b5no7ik%3d",
+          "play_after": 90,
+          "slug": "moonquake-simulator"
+        }
+      });
+      I.setup_page();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Learning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="./assets/learning_style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- Top Bar -->
+    <div class="top_bar">
+      <h1>Learn About Moon</h1>
+    </div>
+
+    <!-- Sidebar -->
+    <div
+      class="w3-sidebar w3-bar-block w3-card"
+      style="width: 20%; right: 0; margin-top: -120px"
+    >
+      <h3 class="w3-bar-item">Lessons</h3>
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(1)"
+        >Moon Intro</a
+      >
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(2)"
+        >Moon Near Side</a
+      >
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(3)"
+        >Moon Far Side</a
+      >
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(4)"
+        >Moon Surface/Craters</a
+      >
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(5)"
+        >Day/Night Terminator Line</a
+      >
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(6)"
+        >Moon's Far and Near Side</a
+      >
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(7)"
+        >Seismometer</a
+      >
+
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(8)"
+        >Seismograph</a
+      >
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(9)"
+        >Apollo 11 Seismic Experiment</a
+      >
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(10)"
+        >The Lunar Eclipse</a
+      >
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(11)"
+        >Lunar Geology</a
+      >
+
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(12)"
+        >Lunar Atmosphere</a
+      >
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(13)"
+        >Moon Phases and Cycles</a
+      >
+
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(14)"
+        >Moon and Tides
+      </a>
+      <a
+        href="javascript:void(0);"
+        class="w3-bar-item w3-button"
+        onclick="goToSlide(15)"
+        >Moon Missions
+      </a>
+      <a
+        href="https://solarsystem.nasa.gov/moons/earths-moon/overview/"
+        class="w3-bar-item w3-button"
+        >NASA Site</a
+      >
+    </div>
+
+    <!-- Content -->
+
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+        <div class="numbertext">1 / 15</div>
+        <img src="./assets/learning/moon.jpeg" style="width: 100%" />
+        <div class="text">Moon</div>
+        <div class="textdescription">
+          The moon, Earth's only natural satellite, has captivated humanity for
+          centuries. Approximately 1/6th the size of Earth, it orbits our planet
+          at an average distance of 238,855 miles. The moon's surface is a
+          barren, desolate landscape, marked by craters, mountains, and vast
+          plains. It lacks a breathable atmosphere and experiences extreme
+          temperature variations. The moon plays a crucial role in Earth's tides
+          and has been a source of inspiration for art, culture, and science. It
+          has also been a target for exploration, with numerous missions
+          launched to unravel its mysteries, making it an enduring symbol of
+          celestial wonder.
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">2 / 15</div>
+        <img
+          src="./assets/learning/the-moon-near-side.jpg"
+          style="width: 100%"
+        />
+        <div class="text">Moon Near Side</div>
+        <div class="textdescription">
+          The Moon's near side, the familiar face we see from Earth, showcases
+          vast lunar plains known as maria, formed by ancient volcanic activity.
+          Contrasting with the far side, it hosts prominent dark patches and a
+          wealth of craters, such as the iconic Tycho and Copernicus. The near
+          side provides a captivating canvas for stargazers and lunar explorers,
+          offering detailed features that have sparked human fascination for
+          centuries. Its accessibility has made it a focal point for scientific
+          study and exploration, marking the starting point for human lunar
+          missions.
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">3 / 15</div>
+        <img
+          src="./assets/learning/the-moon-far-side.en.jpg"
+          style="width: 100%"
+        />
+        <div class="text">Moon Far Side</div>
+        <div class="textdescription">
+          The Moon's far side, often called the "dark side," is the hemisphere
+          permanently hidden from Earth's view. It remains mysterious due to its
+          concealment, shielded from terrestrial radio signals. Lacking the
+          prominent dark maria found on the near side, it is characterized by
+          rugged highlands and impact craters. The far side offers a unique
+          vantage point for scientific exploration, free from Earth's radio
+          interference. Its uncharted terrains have become the focus of lunar
+          missions, unveiling secrets of lunar history and enhancing our
+          understanding of the solar system's evolution.
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">4 / 15</div>
+        <img src="./assets/learning/moon-craters.en.jpg" style="width: 100%" />
+        <div class="text">Moon Surface/Craters</div>
+        <div class="textdescription">
+          Moon craters are the lunar surface's signature features, sculpted by
+          countless cosmic collisions over eons. Ranging from small pockmarks to
+          colossal basins, these craters reveal the Moon's tumultuous history.
+          Each crater is a frozen snapshot of celestial impacts, preserving the
+          moon's geological evolution. Some, like Tycho and Copernicus, stand as
+          majestic monuments, their intricate details telling tales of ancient
+          asteroid or comet strikes. These scars, dispersed across the lunar
+          canvas, serve as celestial archives, providing valuable insights into
+          both lunar and solar system dynamics.
+        </div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">5 / 15</div>
+        <img src="./assets/learning/day-night.jpeg" style="width: 100%" />
+        <div class="text">Moon Day/Night Terminator Line</div>
+        <div class="textdescription">
+          The moon's day-night terminator line is the ever-shifting boundary
+          between sunlight and darkness on its surface. As the lunar day
+          progresses, this line creates a mesmerizing interplay of light and
+          shadow, revealing the intricate topography. At sunrise, crater rims
+          and peaks catch the first rays, casting long shadows, while at sunset,
+          the landscape gradually succumbs to darkness. This dynamic terminator
+          region holds vital clues for scientific exploration, offering a unique
+          perspective on the moon's geology and aiding in the understanding of
+          its complex, cratered terrain.
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">6 / 15</div>
+        <img
+          src="./assets/learning/far_and_near_line.jpeg"
+          style="width: 100%"
+        />
+        <div class="text">Moon's Far and Near Side</div>
+        <div class="textdescription">
+          The Moon's near side, facing Earth, showcases maria and prominent
+          craters like Tycho. In contrast, the far side, hidden from Earth,
+          reveals rugged highlands and remains radio-silent. The near side is a
+          celestial canvas for observation, while the far side, shielded from
+          Earth's influence, provides unique insights into lunar geology.
+          Together, they encapsulate the Moon's duality—a visible, explored
+          face, and a mysterious, uncharted realm.
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">7 / 15</div>
+        <img src="./assets/learning/Seismometer.jpeg" style="width: 100%" />
+        <div class="text">Seismometer</div>
+        <div class="textdescription">
+          On the Moon, seismometers are vital tools for studying moonquakes.
+          Deployed during Apollo missions, they have detected and recorded
+          seismic activity, shedding light on the Moon's interior. Moonquakes
+          can be caused by gravitational interactions, meteoroid impacts, or the
+          cooling and contracting of the lunar crust. Analyzing these seismic
+          waves helps scientists unravel the Moon's geological history and
+          composition. Future lunar missions, including seismometers, aim to
+          deepen our understanding of these intriguing lunar phenomena.
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">8 / 15</div>
+        <img src="./assets/learning/graph.png" style="width: 100%" />
+        <div class="text">Seismograph</div>
+        <div class="textdescription">
+          Moonquakes are studied using seismographs on the Moon. Deployed during
+          Apollo missions, these instruments record seismic waves caused by
+          various lunar activities, such as meteoroid impacts or the Moon's
+          gravitational interactions. Analyzing the data helps scientists
+          understand the Moon's interior structure and composition. Seismographs
+          play a crucial role in unraveling the mysteries of moonquakes,
+          contributing valuable insights to lunar geophysics and expanding our
+          knowledge of celestial bodies beyond Earth.
+        </div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">9 / 15</div>
+        <img src="./assets/learning/experiment.jpeg" style="width: 100%" />
+        <div class="text">Apollo 11 Seismic Experiment</div>
+        <div class="textdescription">
+          The Apollo 11 mission, humanity's historic first moon landing,
+          included a seismic experiment. Deployed by astronauts Neil Armstrong
+          and Buzz Aldrin in July 1969, the experiment aimed to study moonquakes
+          and the Moon's interior. The seismometer transmitted data back to
+          Earth, providing valuable insights into lunar seismic activity.
+          Although it operated for a limited duration, it laid the foundation
+          for subsequent Apollo missions' more sophisticated seismic
+          experiments, contributing significantly to our understanding of the
+          Moon's geology and structure.
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">10 / 15</div>
+        <img src="./assets/learning/eclipse.jpeg" style="width: 100%" />
+        <div class="text">The Lunar Eclipse</div>
+        <div class="textdescription">
+          A lunar eclipse is a celestial spectacle where Earth positions itself
+          between the Sun and the Moon, causing the Moon to traverse through
+          Earth's shadow. As sunlight refracts through our atmosphere, it
+          imparts a reddish tint to the Moon during totality, earning it the
+          nickname "blood moon." This captivating event, observable from various
+          locations on Earth, serves as a testament to celestial mechanics and
+          cultural symbolism, often inspiring wonder and fascination throughout
+          human history.
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">11 / 15</div>
+        <img src="./assets/learning/geology.jpeg" style="width: 100%" />
+        <div class="text">Lunar Geology</div>
+        <div class="textdescription">
+          Lunar geology delves into the study of the Moon's surface features,
+          revealing a fascinating landscape shaped by ancient volcanic activity,
+          impact cratering, and other geological processes. Moon rocks,
+          collected from Apollo missions, provide insight into its composition.
+          Maria, vast plains formed by ancient lava flows, coexist with rugged
+          highlands and a myriad of craters. Understanding lunar geology not
+          only unveils the Moon's history but also contributes to broader
+          insights into planetary formation and evolution across the solar
+          system.
+        </div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">12 / 15</div>
+        <img src="./assets/learning/atmosphere.jpeg" style="width: 100%" />
+        <div class="text">Lunar Atmosphere</div>
+        <div class="textdescription">
+          The Moon's atmosphere, an exosphere, is an ethereal blend of trace
+          gases like helium and neon. Remarkably thin, it lacks weather
+          phenomena and substantial air pressure. This scant atmosphere allows
+          direct exposure to solar and cosmic radiation, shaping lunar geology.
+          Devoid of a protective shield, the lunar atmosphere plays a crucial
+          role in understanding the Moon's surface characteristics and
+          contributes to broader planetary atmospheric research in our cosmic
+          neighborhood.
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">13 / 15</div>
+        <img src="./assets/learning/phases.jpeg" style="width: 100%" />
+        <div class="text">Moon Phases and Cycles</div>
+        <div class="textdescription">
+          Moon phases and cycles illustrate the Moon's changing appearance
+          during its 29.5-day orbit around Earth. This cosmic dance includes
+          waxing and waning crescents, first and last quarters, and the full
+          moon. Influencing tides and guiding ancient calendars, these phases
+          derive from the Moon's position relative to the Sun. The recurring
+          patterns, both scientifically and culturally significant, enrich our
+          understanding of celestial mechanics and have long played a role in
+          human timekeeping and cultural traditions worldwide.
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">14 / 15</div>
+        <img src="./assets/learning/tidea.jpeg" style="width: 100%" />
+        <div class="text">Moon and Tides</div>
+        <div class="textdescription">
+          The Moon plays a pivotal role in generating Earth's tides through
+          gravitational forces. As it orbits, the Moon's gravitational pull
+          creates a tidal bulge on the side facing it, causing high tide.
+          Simultaneously, a second bulge occurs on the opposite side due to
+          centrifugal force, creating another high tide. The areas between
+          experience low tide. Understanding this dynamic relationship between
+          the Moon and tides is crucial, impacting coastal ecosystems,
+          navigation, and illustrating the profound influence celestial bodies
+          exert on our planet.
+        </div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">15 / 15</div>
+        <img src="./assets/learning/missios.jpg" style="width: 100%" />
+        <div class="text">Moon Missions</div>
+        <div class="textdescription">
+          Moon missions, spanning from Apollo's historic lunar landings to
+          recent robotic explorations, continually unravel lunar mysteries.
+          Apollo missions, beginning in the 1960s, marked the first human
+          footsteps on the Moon. Contemporary endeavors like China's Chang'e and
+          NASA's Lunar Reconnaissance Orbiter deepen our understanding. Future
+          plans, including the Artemis program, herald a renewed era of lunar
+          exploration, aiming for sustainable presence and scientific
+          breakthroughs, expanding humanity's reach into the cosmos.
+        </div>
+      </div>
+
+      <a class="prev" onclick="plusSlides(-1)">❮</a>
+      <a class="next" onclick="plusSlides(1)">❯</a>
+    </div>
+    <br />
+
+    <!-- <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div> -->
+
+    <script>
+      let slideIndex = 1;
+      showSlides(slideIndex);
+
+      function plusSlides(n) {
+        showSlides((slideIndex += n));
+      }
+
+      function currentSlide(n) {
+        showSlides((slideIndex = n));
+      }
+
+      function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+
+        if (n > slides.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = slides.length;
+        }
+
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+      }
+
+      // Function to navigate to a specific slide when a menu item is clicked
+      function goToSlide(slideNumber) {
+        currentSlide(slideNumber);
+      }
+    </script>
+  </body>
+</html>

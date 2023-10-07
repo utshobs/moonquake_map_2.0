@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Moonquake - Camera Point of View</title>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+        }
+
+        #c {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body translate="no">
+    <canvas id="c"></canvas>
+
+    <script src="https://threejsfundamentals.org/threejs/resources/threejs/r103/three.min.js"></script>
+    <script src="https://threejsfundamentals.org/threejs/resources/threejs/r103/js/controls/OrbitControls.js"></script>
+    <script src="https://threejsfundamentals.org/threejs/resources/threejs/r103/js/loaders/TDSLoader.js"></script>
+
+    <script>
+
+        function main() {
+            const canvas = document.querySelector('#c');
+            const renderer = new THREE.WebGLRenderer({
+                canvas: canvas
+            });
+
+            const fov = 45;
+            const aspect = 2; // the canvas default
+            const near = 0.1;
+            const far = 100;
+            const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+            // Adjust the camera position below the plane
+            camera.position.set(0, 5, 20);
+
+            // Initialize OrbitControls with restrictions
+            const controls = new THREE.OrbitControls(camera, canvas);
+            controls.target.set(0, 5, 0);
+            controls.minPolarAngle = 0; // Minimum vertical rotation angle (in radians)
+            controls.maxPolarAngle = Math.PI / 2; // Maximum vertical rotation angle (in radians)
+            controls.update();
+
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color('black');
+
+            // Create a surface geometry
+            const surfaceSize = 2000;
+            const divisions = 100; // Increase or decrease this value as needed
+            const surfaceGeometry = new THREE.PlaneBufferGeometry(surfaceSize, surfaceSize, divisions, divisions);
+
+            // Create a surface material
+            const surfaceMaterial = new THREE.MeshPhongMaterial({
+                color: 0x808080, // Grey color for the surface
+                side: THREE.DoubleSide,
+            });
+
+            // Modify vertices to add random heights
+            const vertices = surfaceGeometry.attributes.position.array;
+            const vertexCount = vertices.length / 3;
+            const maxHeight = 20; // Adjust the maximum height as needed
+
+            for (let i = 0; i < vertexCount; i++) {
+                const x = vertices[i * 3];
+                const y = vertices[i * 3 + 1];
+                const z = Math.random() * maxHeight; // Add random height
+                vertices[i * 3 + 2] = z;
+            }
+
+            // Create a bump map texture
+            const bumpMapTexture = new THREE.TextureLoader().load(
+                'moon_bump.png'); // Replace with the actual path to your bump map texture
+
+            // Configure bump map properties
+            surfaceMaterial.bumpMap = bumpMapTexture;
+            surfaceMaterial.bumpScale = 1; // Adjust the bump intensity as needed
+
+            // Create a surface mesh
+            const surfaceMesh = new THREE.Mesh(surfaceGeometry, surfaceMaterial);
+            surfaceMesh.rotation.x = -Math.PI / 200 - 20;
+            surfaceMesh.position.y = -25;
+            surfaceMesh.rotation.x = Math.PI * -.5;
+            scene.add(surfaceMesh);
+
+            // Add lights
+            const skyColor = 0x808080; //  also color for the surface
+            const groundColor = 0xB97A20; // brownish orange
+            const intensity = 1;
+            const hemisphereLight = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+            scene.add(hemisphereLight);
+
+            const color = 0xFFFFFF;
+            const directionalLight = new THREE.DirectionalLight(color, intensity);
+            directionalLight.position.set(5, 10, 2);
+            scene.add(directionalLight);
+
+            function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
+                const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
+                const halfFovY = THREE.Math.degToRad(camera.fov * .5);
+                const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
+                const direction = new THREE.Vector3().
+                subVectors(camera.position, boxCenter).
+                multiply(new THREE.Vector3(1, 0, 1)).
+                normalize();
+
+                camera.position.copy(direction.multiplyScalar(distance).add(boxCenter));
+                camera.near = boxSize / 100;
+                camera.far = boxSize * 100;
+                camera.updateProjectionMatrix();
+                camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
+            }
+
+            {
+                const tdsLoader = new THREE.TDSLoader();
+                tdsLoader.load('lunarlander.3ds', object => {
+
+                    object.rotation.x = -Math.PI / 2; // Set the rotation of the loaded model
+                    object.position.y = 2;
+                    scene.add(object);
+
+                    const box = new THREE.Box3().setFromObject(object);
+                    const boxSize = box.getSize(new THREE.Vector3()).length();
+                    const boxCenter = box.getCenter(new THREE.Vector3());
+
+                    frameArea(boxSize * 1.2, boxSize, boxCenter, camera);
+                    controls.maxDistance = boxSize * 20;
+                    controls.target.copy(boxCenter);
+                    controls.update();
+                });
+            }
+
+            // Function to shake the camera
+            function shakeCamera(camera, intensity, duration) {
+                const initialPosition = camera.position.clone();
+                const startTime = Date.now();
+                const shakeFunction = () => {
+                    const currentTime = Date.now();
+                    const elapsedTime = (currentTime - startTime) / 1000; // in seconds
+                    if (elapsedTime < duration) {
+                        // Calculate a random displacement within the specified intensity
+                        const displacement = new THREE.Vector3(
+                            (Math.random() - 0.5) * intensity,
+                            (Math.random() - 0.5) * intensity,
+                            (Math.random() - 0.5) * intensity
+                        );
+                        // Apply the displacement to the camera position
+                        camera.position.copy(initialPosition.clone().add(displacement));
+                        requestAnimationFrame(shakeFunction);
+                    } else {
+                        // Reset the camera position after shaking
+                        camera.position.copy(initialPosition);
+                    }
+                };
+                shakeFunction();
+            }
+
+            // Call the shakeCamera function to shake the camera
+            const shakeIntensity = 0.01; // Adjust the intensity as needed
+            const shakeDuration = 20; // Adjust the duration (in seconds) as needed
+            shakeCamera(camera, shakeIntensity, shakeDuration);
+
+            function resizeRendererToDisplaySize(renderer) {
+                const canvas = renderer.domElement;
+                const width = canvas.clientWidth;
+                const height = canvas.clientHeight;
+                const needResize = canvas.width !== width || canvas.height !== height;
+                if (needResize) {
+                    renderer.setSize(width, height, false);
+                }
+                return needResize;
+            }
+
+            function render() {
+                if (resizeRendererToDisplaySize(renderer)) {
+                    const canvas = renderer.domElement;
+                    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+                    camera.updateProjectionMatrix();
+                }
+
+                renderer.render(scene, camera);
+                requestAnimationFrame(render);
+            }
+
+            requestAnimationFrame(render);
+        }
+
+        main();
+    </script>
+</body>
+
+</html>
